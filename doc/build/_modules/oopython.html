@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>oopython &mdash; oopython 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="oopython 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for oopython</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">oopython.py</span>
+
+<span class="sd">OO Python sample project.</span>
+<span class="sd">author: luisalbertogh@hotmail.com</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Import classes from module</span>
+<span class="kn">from</span> <span class="nn">mypackage</span> <span class="kn">import</span> <span class="o">*</span><span class="p">;</span>
+
+<span class="c1"># YAML &amp; logging</span>
+<span class="kn">import</span> <span class="nn">yaml</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">logging</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">logging.config</span><span class="p">;</span>
+
+<span class="c1"># Oopython class</span>
+<div class="viewcode-block" id="Oopython"><a class="viewcode-back" href="../oopython.html#oopython.Oopython">[docs]</a><span class="k">class</span> <span class="nc">Oopython</span><span class="p">:</span>
+
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Main method</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Oopython.run"><a class="viewcode-back" href="../oopython.html#oopython.Oopython.run">[docs]</a>	<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="c1"># Init logger</span>
+		<span class="n">logdict</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;config/log_config.yaml&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">));</span>
+		<span class="n">logging</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">dictConfig</span><span class="p">(</span><span class="n">logdict</span><span class="p">);</span>
+		<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;MyLogger&#39;</span><span class="p">);</span>
+
+		<span class="c1"># New team</span>
+		<span class="n">mov</span> <span class="o">=</span> <span class="n">Team</span><span class="p">(</span><span class="s1">&#39;Movistar&#39;</span><span class="p">,</span> <span class="n">Cyclist</span><span class="p">(</span><span class="s1">&#39;male&#39;</span><span class="p">,</span><span class="s1">&#39;Spanish&#39;</span><span class="p">,</span><span class="s1">&#39;Valverde&#39;</span><span class="p">),</span> <span class="n">Cyclist</span><span class="p">(</span><span class="s1">&#39;male&#39;</span><span class="p">,</span><span class="s1">&#39;Colombian&#39;</span><span class="p">,</span><span class="s1">&#39;Quintana&#39;</span><span class="p">),</span> <span class="n">Cyclist</span><span class="p">(</span><span class="s1">&#39;male&#39;</span><span class="p">,</span><span class="s1">&#39;Basque&#39;</span><span class="p">,</span><span class="s1">&#39;Izagirre&#39;</span><span class="p">));</span>
+		<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">mov</span><span class="p">);</span>
+		<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Num. de corredores: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mov</span><span class="o">.</span><span class="n">totalriders</span><span class="p">));</span>
+
+		<span class="c1"># New team</span>
+		<span class="n">sky</span> <span class="o">=</span> <span class="n">Team</span><span class="p">(</span><span class="s1">&#39;Sky&#39;</span><span class="p">,</span> <span class="n">Cyclist</span><span class="p">(</span><span class="s1">&#39;male&#39;</span><span class="p">,</span><span class="s1">&#39;Basque&#39;</span><span class="p">,</span><span class="s1">&#39;Landa&#39;</span><span class="p">),</span> <span class="n">Cyclist</span><span class="p">(</span><span class="s1">&#39;male&#39;</span><span class="p">,</span><span class="s1">&#39;Colombian&#39;</span><span class="p">,</span><span class="s1">&#39;Henao&#39;</span><span class="p">),</span> <span class="n">Cyclist</span><span class="p">(</span><span class="s1">&#39;male&#39;</span><span class="p">,</span><span class="s1">&#39;Kenian&#39;</span><span class="p">,</span><span class="s1">&#39;Froom&#39;</span><span class="p">));</span>
+		<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">sky</span><span class="p">);</span>
+		<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Num. de corredores: {0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mov</span><span class="o">.</span><span class="n">totalriders</span><span class="p">));</span>
+
+		<span class="c1"># Add director</span>
+		<span class="n">mov</span><span class="o">.</span><span class="n">director</span> <span class="o">=</span> <span class="s1">&#39;Unzue&#39;</span><span class="p">;</span>
+		<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">mov</span><span class="o">.</span><span class="n">director</span><span class="p">);</span></div></div>
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../oopython.html#oopython.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+	<span class="n">oop</span> <span class="o">=</span> <span class="n">Oopython</span><span class="p">();</span>
+	<span class="n">oop</span><span class="o">.</span><span class="n">run</span><span class="p">();</span></div>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+	<span class="n">main</span><span class="p">();</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, luisalbertogh@hotmail.com.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

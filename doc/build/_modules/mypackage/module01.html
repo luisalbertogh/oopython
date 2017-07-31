@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mypackage.module01 &mdash; oopython 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="oopython 1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mypackage.module01</h1><div class="highlight"><pre>
+<span class="ch">#!C:\Herramientas\Python\WinPython-64bit-3.4.4.1\python-3.4.4.amd64\python.exe</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">module01.py</span>
+
+<span class="sd">Python module sample.</span>
+<span class="sd">author: luisalbertogh@hotmail.com</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Abstract classes</span>
+<span class="kn">import</span> <span class="nn">abc</span><span class="p">;</span>
+
+<span class="c1"># Garbage collector</span>
+<span class="kn">import</span> <span class="nn">gc</span><span class="p">;</span>
+
+<span class="c1">#Weak references for cyclic relations</span>
+<span class="kn">import</span> <span class="nn">weakref</span><span class="p">;</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Sportman superclass with init method.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Sportbeing"><a class="viewcode-back" href="../../mypackage.html#mypackage.module01.Sportbeing">[docs]</a><span class="k">class</span> <span class="nc">Sportbeing</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">abc</span><span class="o">.</span><span class="n">ABCMeta</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Init method.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gender</span><span class="p">,</span> <span class="n">nationality</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="n">gender</span><span class="p">;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">nationality</span> <span class="o">=</span> <span class="n">nationality</span><span class="p">;</span></div>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Subclass extends from superclass.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Cyclist"><a class="viewcode-back" href="../../mypackage.html#mypackage.module01.Cyclist">[docs]</a><span class="k">class</span> <span class="nc">Cyclist</span><span class="p">(</span><span class="n">Sportbeing</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Init method.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gender</span><span class="p">,</span> <span class="n">nationality</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+		<span class="c1"># Invoke superclass init</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">gender</span><span class="p">,</span> <span class="n">nationality</span><span class="p">);</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Static mehod to create instances.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Cyclist.createInstance"><a class="viewcode-back" href="../../mypackage.html#mypackage.module01.Cyclist.createInstance">[docs]</a>	<span class="k">def</span> <span class="nf">createInstance</span><span class="p">():</span>
+		<span class="k">return</span> <span class="n">Cyclist</span><span class="p">(</span><span class="s1">&#39;male&#39;</span><span class="p">,</span><span class="s1">&#39;Spanish&#39;</span><span class="p">,</span><span class="s1">&#39;Valverde&#39;</span><span class="p">);</span></div>
+
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Set name.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Cyclist.setName"><a class="viewcode-back" href="../../mypackage.html#mypackage.module01.Cyclist.setName">[docs]</a>	<span class="k">def</span> <span class="nf">setName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">team</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span></div>
+
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Print instance details (used in print).</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gender</span> <span class="o">+</span> <span class="s1">&#39;; &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">nationality</span> <span class="o">+</span> <span class="s1">&#39;; &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">;</span>
+
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Format instance details.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">def</span> <span class="nf">__format__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spec</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gender</span> <span class="o">+</span> <span class="s1">&#39;; &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">nationality</span> <span class="o">+</span> <span class="s1">&#39;; &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">;</span>
+
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Print instance details.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="s2">&quot;{0}:{1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gender</span> <span class="o">+</span> <span class="s1">&#39;; &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">nationality</span> <span class="o">+</span> <span class="s1">&#39;; &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">);</span>
+
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Override equlas method</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+		<span class="k">if</span><span class="p">(</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Cyclist</span><span class="p">)):</span>
+			<span class="k">return</span> <span class="bp">NotImplemented</span><span class="p">;</span>
+
+		<span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gender</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">gender</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">nationality</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">nationality</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">name</span><span class="p">);</span>
+
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Override hash method</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gender</span><span class="p">)</span> <span class="o">^</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nationality</span><span class="p">)</span> <span class="o">^</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">);</span></div>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">More classes.</span>
+<span class="sd">It inherits from &#39;list&#39; class.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Team"><a class="viewcode-back" href="../../mypackage.html#mypackage.module01.Team">[docs]</a><span class="k">class</span> <span class="nc">Team</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Init method.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">team</span><span class="p">):</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">team</span><span class="p">));</span>
+		<span class="k">for</span> <span class="n">rider</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+			<span class="n">rider</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="bp">self</span><span class="p">);</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Print team</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">riders</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span><span class="p">;</span>
+		<span class="k">for</span> <span class="n">rider</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+			<span class="n">riders</span> <span class="o">=</span> <span class="n">riders</span> <span class="o">+</span> <span class="n">rider</span><span class="o">.</span><span class="n">__str__</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;;&#39;</span><span class="p">;</span>
+		<span class="k">return</span> <span class="n">riders</span><span class="p">;</span>
+
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Lazy property, created when invoked.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="nd">@property</span>
+	<span class="k">def</span> <span class="nf">totalriders</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+			<span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">);</span>
+
+		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Lazy property, created when invoked.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="nd">@property</span>
+	<span class="k">def</span> <span class="nf">director</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_director</span><span class="p">;</span>
+
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Setter and deleter for riders.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="nd">@director.setter</span>
+	<span class="k">def</span> <span class="nf">director</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">director</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_director</span> <span class="o">=</span> <span class="n">director</span><span class="p">;</span>
+
+	<span class="nd">@director.deleter</span>
+	<span class="k">def</span> <span class="nf">director</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_director</span> <span class="o">=</span> <span class="bp">None</span><span class="p">;</span></div>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Composed class.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Tour"><a class="viewcode-back" href="../../mypackage.html#mypackage.module01.Tour">[docs]</a><span class="k">class</span> <span class="nc">Tour</span><span class="p">:</span>
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Init method.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">team</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">team</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">team</span><span class="p">);</span>
+
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Print tour</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">riders</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+		<span class="k">for</span> <span class="n">riders</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">team</span><span class="p">:</span>
+			<span class="n">riders</span> <span class="o">=</span> <span class="n">riders</span> <span class="o">+</span> <span class="n">rider</span><span class="o">.</span><span class="n">__str__</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;;&#39;</span><span class="p">;</span>
+		<span class="k">return</span> <span class="n">riders</span><span class="p">;</span></div>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Strategy class (stateless, no data, only logic).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="StageRules"><a class="viewcode-back" href="../../mypackage.html#mypackage.module01.StageRules">[docs]</a><span class="k">class</span> <span class="nc">StageRules</span><span class="p">:</span>
+<div class="viewcode-block" id="StageRules.win"><a class="viewcode-back" href="../../mypackage.html#mypackage.module01.StageRules.win">[docs]</a>	<span class="k">def</span> <span class="nf">win</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rider1</span><span class="p">,</span> <span class="n">rider2</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">True</span><span class="p">;</span></div>
+
+<div class="viewcode-block" id="StageRules.lose"><a class="viewcode-back" href="../../mypackage.html#mypackage.module01.StageRules.lose">[docs]</a>	<span class="k">def</span> <span class="nf">lose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rider1</span><span class="p">,</span> <span class="n">rider2</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">False</span><span class="p">;</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, luisalbertogh@hotmail.com.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

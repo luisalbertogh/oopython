@@ -16,9 +16,7 @@ import gc;
 #Weak references for cyclic relations
 import weakref;
 
-"""
-Sportman superclass with init method.
-"""
+#Sportman superclass with init method.
 class Sportbeing(metaclass=abc.ABCMeta):
 	"""
 	Init method.
@@ -28,9 +26,7 @@ class Sportbeing(metaclass=abc.ABCMeta):
 		self.nationality = nationality;
 
 
-"""
-Subclass extends from superclass.
-"""
+#Subclass extends from superclass.
 class Cyclist(Sportbeing):
 	"""
 	Init method.
@@ -87,10 +83,7 @@ class Cyclist(Sportbeing):
 		return hash(self.gender) ^ hash(self.nationality) ^ hash(self.name);
 
 
-"""
-More classes.
-It inherits from 'list' class.
-"""
+#More classes. It inherits from 'list' class.
 class Team(list):
 	"""
 	Init method.
@@ -139,9 +132,7 @@ class Team(list):
 		self._director = None;
 
 
-"""
-Composed class.
-"""
+# Composed class.
 class Tour:
 	"""
 	Init method.
@@ -158,9 +149,7 @@ class Tour:
 			riders = riders + rider.__str__() + ';';
 		return riders;
 
-"""
-Strategy class (stateless, no data, only logic).
-"""
+# Strategy class (stateless, no data, only logic).
 class StageRules:
 	def win(self, rider1, rider2):
 		return True;

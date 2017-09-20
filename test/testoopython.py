@@ -32,7 +32,7 @@ class TestOopython(unittest.TestCase):
 
 	# Test included raiders
 	def test_raiders(self):
-		self.assertEqual(Cyclist('male','Spanish','Valverdez'), self.testteam[0]);
+		self.assertEqual(Cyclist('male','Spanish','Valverde'), self.testteam[0]);
 		self.assertEqual(Cyclist('male','Colombian','Quintana'), self.testteam[1]);
 		self.assertEqual(Cyclist('male','Basque','Izagirre'), self.testteam[2]);
 

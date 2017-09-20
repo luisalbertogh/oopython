@@ -1,4 +1,5 @@
 node {
+    def pythonHome = tool "python3"
     stage('checkout') {
        checkout scm
     }
@@ -10,13 +11,13 @@ node {
     }
     stage('Test') {
        echo "Hello Test"
-       bat "python -m unittest discover test"
+       bat "${pythonHome}/python -m unittest discover test"
     }
     stage('Results') {
        echo "Hello Result"
     }
     stage('Run') {
        echo "Hello Run"
-       bat "python oopython/oopython.py"
+       bat "${pythonHome}/python oopython/oopython.py"
     }
  }

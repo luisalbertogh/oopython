@@ -9,7 +9,11 @@ node {
     }
     stage('Test') {
        echo "Hello Test"
-       bat "${pythonHome}/python -m unittest discover test"
+       try {
+          bat "${pythonHome}/python -m unittest discover test"
+       } catch(err) {
+          throw err
+       }
     }
     stage('Run') {
        echo "Hello Run"
